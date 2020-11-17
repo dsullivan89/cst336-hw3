@@ -13,6 +13,8 @@ var GitHubStrategy = require('passport-github').Strategy;
 var BNET_ID = process.env.BNET_ID;
 var BNET_SECRET = process.env.BNET_SECRET;
 
+var port = process.env.PORT || 3000;
+
 passport.serializeUser(function(user, done) {
     done(null, user);
 });
@@ -76,6 +78,6 @@ app.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
-var server = app.listen(3000, function() {
+var server = app.listen(port, function() {
   console.log('Listening on port %d', server.address().port);
 });
