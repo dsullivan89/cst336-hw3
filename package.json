@@ -1,0 +1,24 @@
+{
+  "name": "cst336-hw3",
+  "version": "1.0.0",
+  "description": "This is an example of how to use a web api. Blizzard's API has been chosen.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dsullivan89/cst336-hw3.git"
+  },
+  "author": "David Sullivan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dsullivan89/cst336-hw3/issues"
+  },
+  "homepage": "https://github.com/dsullivan89/cst336-hw3#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^3.0.1"
+  }
+}
