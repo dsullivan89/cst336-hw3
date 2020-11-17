@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var express = require('express');
 var passport = require('passport');
 var util = require('util');
@@ -6,10 +8,8 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
 var BnetStrategy = require('passport-bnet').Strategy;
-//var GitHubStrategy = require('passport-github').Strategy;
+var GitHubStrategy = require('passport-github').Strategy;
 
-//var GITHUB_ID = process.env.GITHUB_ID;
-//var GITHUB_SECRET = process.env.GITHUB_SECRET;
 var BNET_ID = process.env.BNET_ID;
 var BNET_SECRET = process.env.BNET_SECRET;
 
@@ -21,26 +21,11 @@ passport.deserializeUser(function(obj, done) {
     done(null, obj);
 });
 
-// Use the GitHubStrategy within Passport.
-/*
-passport.use(
-  new GitHubStrategy(
-    { clientID: GITHUB_ID,
-      clientSecret: GITHUB_SECRET,
-      callbackURL: "https://localhost/auth/github/callback" },
-    function(accessToken, refreshToken, profile, done) {
-      process.nextTick(function () {
-        return done(null, profile);
-      });
-    })
-);
-*/
-
 // Use the BnetStrategy within Passport.
 passport.use(
   new BnetStrategy(
-    { clientID: process.env.BNET_ID,
-      clientSecret: process.env.BNET_SECRET,
+    { clientID: BNET_ID,
+      clientSecret: BNET_SECRET,
       scope: "wow.profile sc2.profile",
       callbackURL: "https://localhost/auth/bnet/callback" },
     function(accessToken, refreshToken, profile, done) {
@@ -63,14 +48,6 @@ app.use(session({ secret: 'blizzard',
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.get('/auth/github', passport.authenticate('github'));
-/*
-app.get('/auth/github/callback',
-        passport.authenticate('github', { failureRedirect: '/' }),
-        function(req, res){
-          res.redirect('/');
-        });
-*/
 app.get('/auth/bnet',
         passport.authenticate('bnet'));
 
@@ -89,7 +66,7 @@ app.get('/', function(req, res) {
     output += '<a href="/logout">Logout</a>';
     res.send(output);
   } else {
-    res.send('<h1>Express OAuth Test</h1>' +
+    res.send('<h1>Express OAuth Test</h1>' + 
              '<a href="/auth/bnet">Login with Bnet</a>');
   }
 });
