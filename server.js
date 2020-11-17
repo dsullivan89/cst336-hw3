@@ -27,7 +27,7 @@ passport.use(
     { clientID: BNET_ID,
       clientSecret: BNET_SECRET,
       scope: "wow.profile sc2.profile",
-      callbackURL: "https://localhost/auth/bnet/callback" },
+      callbackURL: "http://localhost/auth/bnet/callback" },
     function(accessToken, refreshToken, profile, done) {
       process.nextTick(function () {
         return done(null, profile);

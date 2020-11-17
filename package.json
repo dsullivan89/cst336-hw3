@@ -18,16 +18,25 @@
   },
   "homepage": "https://github.com/dsullivan89/cst336-hw3#readme",
   "dependencies": {
+    "all": "0.0.0",
+    "bluebird": "^3.7.2",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
+    "fs": "0.0.1-security",
+    "gm": "^1.23.1",
     "nodemon": "^2.0.6",
     "passport": "^0.4.1",
     "passport-bnet": "^2.0.0",
     "passport-github": "^1.1.0",
+    "ramda": "^0.27.1",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "simple-oauth2": "^2.2.1",
     "socket.io": "^3.0.1",
     "throng": "^5.0.0",
+    "tmp": "^0.2.1",
     "util": "^0.12.3"
   }
 }
