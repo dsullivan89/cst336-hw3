@@ -1,0 +1,17 @@
+
+/* Footer css */
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.small {
+	font-size: 0.5em;
+}
+
+.text-c {
+	text-align: center;
+}
+
+/* Footer end */
