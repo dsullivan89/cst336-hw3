@@ -18,9 +18,4 @@ $(document).ready(function() {
 		xhr.send(null);
 	}
 
-	var data = { "grant_type":"client_credentials" };
-
-	xhr.send(JSON.stringify(data));
-	// xhr.send();
-
 }); // document ready
