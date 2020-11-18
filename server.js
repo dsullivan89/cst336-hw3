@@ -5,6 +5,8 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const path = require('path');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var passport = require('passport');
 var BnetStrategy = require('passport-bnet').Strategy;
 const server = require('http').createServer(app);
