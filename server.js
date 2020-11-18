@@ -63,7 +63,7 @@ app.get('/initialData', function(req, res) {
   res.end();
 });
 
-app.get(['/', '/:id/:battletag/', '/index.html' ], function(req, res) {
+app.get(['/', '/:id/:battletag/' ], function(req, res) {
   if(req.isAuthenticated()) {
     var data = {
       id: req.user.id,
