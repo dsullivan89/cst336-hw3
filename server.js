@@ -31,6 +31,19 @@ passport.use(
     })
 );
 
+app.get('/', function(req, res) {
+  if(req.isAuthenticated()) {
+
+    var dataToSend = {
+      id: res.user.id,
+      battletag: res.user.battletag
+    }
+
+    res.send(dataToSend);
+
+  }
+});
+
 app.get('/auth/bnet',
     passport.authenticate('bnet'));
 
