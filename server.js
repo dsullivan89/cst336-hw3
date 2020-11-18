@@ -69,7 +69,7 @@ app.get(['/', '/:id/:battletag/', '/index.html' ], function(req, res) {
       id: req.user.id,
       battletag: req.user.battletag
     }
-    res.send(data);
+    // res.send(data);
     //res.writeHead(200, {'Content-Type': 'text/json'});
     //res.write(data);
     //res.end();
