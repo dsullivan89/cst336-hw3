@@ -9,12 +9,12 @@ class RealmService {
 
     async getRealms(namespace, locale, orderbyField, pageNumber) {
         const oauthToken = await this.oauthClient.getToken();
-        const encodedCharacterName = encodeURIComponent(characterName);
-		  const realmNameSlug = slug(realmName);
+        //const encodedCharacterName = encodeURIComponent(characterName);
+		  //const realmNameSlug = slug(realmName);
 		  
 		  const realmListDocumentURL = `https://us.api.blizzard.com/data/wow/search/realm?namespace=${namespace}&locale=${locale}&timezone=America%2FNew_York&orderby=${orderbyField}&_page=${pageNumber}&access_token=${oauthToken}`;
 
-        const characterSummaryDocumentURL = `https://us.api.blizzard.com/profile/wow/character/${realmNameSlug}/${encodedCharacterName}`;
+        //const characterSummaryDocumentURL = `https://us.api.blizzard.com/profile/wow/character/${realmNameSlug}/${encodedCharacterName}`;
         const response = await rp.get({
             uri: realmListDocumentURL,
             json: true,
