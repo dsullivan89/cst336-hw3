@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title> Blizzard API Example </title>
+		<title>Starcraft II API</title>
 		<link rel="stylesheet" 
 			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
 			integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" 
@@ -12,13 +12,26 @@
 	</head>
 	<body>
 		<header>
-			<h1>Blizzard API Example</h1>
+			<h1>Starcraft II API</h1>
 		</header>
-		<p>this is an example of the blizzard api. If you don't have or wish to have
-			a battlnet account then you may browse the examples.</p>
-			<span id="battletagDisplay" class="battletag-display"></span>
-			<a id = "battlenetLink" href="/auth/bnet">Login with Bnet</a>
-			<button id="infoButton">Get Info</button>
+		<div class="formContainer">
+			<a href="/auth/bnet">Login with Battle.net</a>
+			<form>
+				Account ID: <span id="accountID"></span><br>
+				Region ID: <span id="regionID"></span><br>
+				Realm ID: <span id="realmID"></span><br>
+				Profile ID: <span id="profileID"></span><br>
+				Region:
+				<select id="region" name="region">
+					<option> Select One </option>
+					<option value="us"> United States </option>
+					<option value="eu"> European Union </option>
+					<option value="kr"> Korea </opton>
+					<option value="tw"> Taiwan </opton>
+				</select><br>
+			</form>
+		</div>
+			
 	</body>
 	<footer>
 		<feature>

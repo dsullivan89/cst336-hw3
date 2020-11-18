@@ -1,32 +1,24 @@
+// this is the server, main.js is part of the client.
+
 require('dotenv').config();
 
-var express = require('express');
+const express = require('express');
+const app = express();
+const path = require('path');
 var passport = require('passport');
-var util = require('util');
-
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
-
 var BnetStrategy = require('passport-bnet').Strategy;
+const server = require('http').createServer(app);
+const port = process.env.PORT || 3000;
 
-var BNET_ID = process.env.BNET_ID;
-var BNET_SECRET = process.env.BNET_SECRET;
-
-var port = process.env.PORT || 3000;
-
-passport.serializeUser(function(user, done) {
-    done(null, user);
-});
-
-passport.deserializeUser(function(obj, done) {
-    done(null, obj);
+server.listen(port, () => {
+  console.log('Server listening at port %d', port);
 });
 
 // Use the BnetStrategy within Passport.
 passport.use(
   new BnetStrategy(
-    { clientID: BNET_ID,
-      clientSecret: BNET_SECRET,
+    { clientID: process.env.BNET_ID,
+      clientSecret: process.env.BNET_SECRET,
       scope: "wow.profile sc2.profile",
       callbackURL: "https://dasu20-hw3.herokuapp.com/auth/bnet/callback" },
     function(accessToken, refreshToken, profile, done) {
@@ -36,73 +28,17 @@ passport.use(
     })
 );
 
-var app = express();
-
-// configure Express
-app.use(cookieParser());
-
-app.use(express.static('public'))
-
-app.use(session({ secret: 'blizzard',
-                  saveUninitialized: true,
-                  resave: true }));
-
-// Initialize Passport!  Also use passport.session() middleware, to support
-// persistent login sessions (recommended).
-app.use(passport.initialize());
-app.use(passport.session());
-
 app.get('/auth/bnet',
-        passport.authenticate('bnet'));
+    passport.authenticate('bnet'));
 
 app.get('/auth/bnet/callback',
-        passport.authenticate('bnet', { failureRedirect: '/' }),
-        function(req, res){
-          res.redirect('/');
-        });
-
-app.get('/bnet', function(req, res) {
-  if(req.isAuthenticated()) {
-    var data = {
-      id: req.user.id,
-      battletag: req.user.battletag
-    }
-
-    res.writeHead(200, {
-      'Content-Type': 'text/json'
+    passport.authenticate('bnet', { failureRedirect: '/' }),
+    function(req, res){
+        res.redirect('/');
     });
-    res.write(data);
-    res.end();
-  }
-});
 
-app.get('/', function(req, res) {
+app.use(express.static(path.join(__dirname, 'public')));
 
-  res.sendFile(path.join(__dirname + '/index.html'));
-
-  /*
-  if(req.isAuthenticated()) {
-
-    
-    var output = '<h1>Express OAuth Test</h1>' + req.user.id + '<br>';
-    if(req.user.battletag) {
-      output += req.user.battletag + '<br>';
-    }
-    output += '<a href="/logout">Logout</a>';
-    res.send(output);
-    
-  } else { 
-    
-    //res.send('<h1>Express OAuth Test</h1>' + 
-    //         '<a href="/auth/bnet">Login with Bnet</a>');
-  } */
-});
-
-app.get('/logout', function(req, res) {
-  req.logout();
-  res.redirect('/');
-});
-
-var server = app.listen(port, function() {
-  console.log('Listening on port %d', server.address().port);
-});
+var BnetStrategy = require('passport-bnet').Strategy;
+var BNET_ID = process.env.BNET_ID
+var BNET_SECRET = process.env.BNET_SECRET

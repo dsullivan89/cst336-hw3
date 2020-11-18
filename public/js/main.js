@@ -1,66 +1,25 @@
 $(document).ready(function() {
 
-	//have to generate a token as they expire in 24 hours
-	async function generateToken() {
-		let baseURL = "https://us.battle.net/oauth/token";
-		let response = await fetch(baseURL,{
-			 method:'POST',
-			 headers: {
-				  'Authorization':'Basic NGY0NDA4NWE5NGNhNDU5ZDlmNjlmZTUwNGMxMTE2Y2Y6SmJHSWxBc253VmpJY2NMRFhlQ2tiQjFDTDk1ZjZnNHk=',
-				  'Host':'us.battle.net',
-				  'Content-Type':'application/x-www-form-urlencoded',
-				  'Accept':'application/json'
-			 }, //headers
-			 body:"grant_type=client_credentials"
-		}); //fetch
-		let data = await response.json();
-		return data.access_token;
-   } //generateToken
-	init();
+	var url = "https://us.battle.net/oauth/token";
 
-	$("#infoButton").click(function() {
-		get_bnetData();
-	});
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", url);
 
-	/*
-	$("#battlenetLink").click(function() {
-		auth_battlenet();
-	});
-	*/
+	xhr.setRequestHeader("Authorization", "Basic ODk4YzRmMTNhODg5NGMxYWJiYjdhODEwMzA3MGQ4YmY6eWszMXFQOVdkc1lhS0VjbDJoNGoxNEtkUGFONVhqNEE=");
+	xhr.setRequestHeader("Content-Type", "application/json");
+	// xhr.setRequestHeader("Content-Length", "0");
+	
 
-	/*
-	function auth_battlenet() {
-		return new Promise((resolve, reject) => {
-			var req = new XMLHttpRequest();
-			req.open('GET', '/auth/bnet');
-			req.send();
-			// req.onload = () => resolve(req.response);
-		 });
-	}
-	*/
+	xhr.onreadystatechange = function () {
+   	if (xhr.readyState === 4) {
+   	   console.log(xhr.status);
+   	   console.log(xhr.responseText);
+   	}};
 
-	function get_bnetData() {
-		return new Promise((resolve, reject) => {
-		  var req = new XMLHttpRequest();
-		  req.open('GET', '/bnet');
-		  req.onload = () => resolve(req.response);
-		});
-	 }
-	  // then to get the data, call the function
+	var data = { "grant_type":"client_credentials" };
 
-	 function init() {
-		get_bnetData().then((data) => {
-			var parsed = JSON.parse(data);
-			updateBattleTagDisplay(data.battletag);
-			console.log("updated battletag display. can you see it?");
-		 });
-	 }
-	 
-	 
-
-	 function updateBattleTagDisplay(battletag) {
-		 $("#battletagDisplay").html(battletag);
-	 }
+	xhr.send(JSON.stringify(data));
+	// xhr.send();
 
 
 }); // document ready
