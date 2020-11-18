@@ -88,7 +88,7 @@ app.get(['/', '/:code', '/index.html'], function(req, res) {
   }
   else
   {
-    res.render('index', { id: "N/A", battletag: "N/A" });
+    res.render('index', { code: "", id: "N/A", battletag: "N/A" });
   }
 
   
