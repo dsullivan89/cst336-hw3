@@ -41,7 +41,7 @@ var app = express();
 // configure Express
 app.use(cookieParser());
 
-app.use(express.static(__dirname + '/public'))
+app.use(express.static('public'))
 
 app.use(session({ secret: 'blizzard',
                   saveUninitialized: true,
@@ -70,7 +70,7 @@ app.get('/', function(req, res) {
     output += '<a href="/logout">Logout</a>';
     res.send(output);
   } else {
-    res.sendFile('public/index.html', {root: __dirname});
+    res.sendFile(__dirname + 'public');
     //res.send('<h1>Express OAuth Test</h1>' + 
     //         '<a href="/auth/bnet">Login with Bnet</a>');
   }
