@@ -26,6 +26,7 @@ $(document).ready(function() {
 		auth_battlenet();
 	});
 
+	/*
 	function auth_battlenet() {
 		return new Promise((resolve, reject) => {
 			var req = new XMLHttpRequest();
@@ -34,6 +35,7 @@ $(document).ready(function() {
 			// req.onload = () => resolve(req.response);
 		 });
 	}
+	*/
 
 	function get_bnetData() {
 		return new Promise((resolve, reject) => {
