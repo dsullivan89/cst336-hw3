@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	httpGet("/initialData", updateDispay);
+	httpGet("/", updateDispay);
 	
 	function httpGet(url, callback)
 	{
