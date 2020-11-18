@@ -26,13 +26,15 @@ app.use('/public', express.static('public'));
 //app.use( express.static( "public" ) );
 app.set('views', path.join(__dirname, '/views'));
 
-app.use(passport.initialize());
-app.use(passport.session());
+
 
 app.use(cookieParser());
 app.use(session({ secret: 'blizzard',
                   saveUninitialized: true,
                   resave: true }));
+
+app.use(passport.initialize());
+app.use(passport.session());                  
 
 server.listen(port, () => {
   console.log('Server listening at port %d', port);
@@ -90,10 +92,16 @@ app.get(['/', '/:code', '/index.html'], function(req, res) {
   {
     res.render('index', { code: "", id: "N/A", battletag: "N/A" });
   }
-
-  
-
   //res.sendFile(path.join(__dirname + '/public/index.html'));
+});
+
+app.get('/login', (req, res) => {
+  res.redirect('/login/oauth/battlenet');
+});
+
+app.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
 });
 
 app.get('/auth/bnet',
