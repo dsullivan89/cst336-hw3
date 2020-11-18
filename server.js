@@ -19,6 +19,10 @@ var passport = require('passport');
 let RedisStore = require('connect-redis')(session)
 //let redisClient = redis.createClient()
 
+const createLogger = require('pino');
+
+const logger = createLogger();
+
 let redisClient;
 if (process.env.REDIS_URL) {
   redisClient = redis.createClient(process.env.REDIS_URL);
@@ -108,7 +112,7 @@ app.get('/', function(req, res) {
     var userid = req.user.id;
     var userbattletag = req.user.battletag;
     
-    res.render('index', { code: req.params.name, id: userid, battletag: userbattletag });
+    res.render('index', { id: userid, battletag: userbattletag });
 
     //res.sendFile(path.join(__dirname + '/public/index.html'), 
     //  { id: req.user.id, battletag: req.user.battletag } );
