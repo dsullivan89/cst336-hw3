@@ -103,7 +103,7 @@ app.get('/initialData', function(req, res) {
   res.end();
 });
 
-app.get(['/', '/:code', '/index.html'], function(req, res) {
+app.get('/', function(req, res) {
   if(req.isAuthenticated()) {
     var userid = req.user.id;
     var userbattletag = req.user.battletag;
