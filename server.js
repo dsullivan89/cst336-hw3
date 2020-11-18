@@ -86,8 +86,12 @@ app.get(['/', '/:code', '/index.html'], function(req, res) {
     //res.write(data);
     //res.end();
   }
+  else
+  {
+    res.render('index', { id: "N/A", battletag: "N/A" });
+  }
 
-  res.render('index', { id: "N/A", battletag: "N/A" });
+  
 
   //res.sendFile(path.join(__dirname + '/public/index.html'));
 });
