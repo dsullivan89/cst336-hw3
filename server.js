@@ -63,19 +63,20 @@ app.get('/initialData', function(req, res) {
   res.end();
 });
 
-app.get('/', function(req, res) {
+app.get(['/', '/:id/:battletag/', '/index.html' ], function(req, res) {
   if(req.isAuthenticated()) {
     var data = {
       id: req.user.id,
       battletag: req.user.battletag
     }
-  
-    res.writeHead(200, {'Content-Type': 'text/json'});
-    res.write(data);
-    res.end();
+    res.send(data);
+    //res.writeHead(200, {'Content-Type': 'text/json'});
+    //res.write(data);
+    //res.end();
   }
 
-  res.sendFile(path.join(__dirname + './public/index.html'));
+  res.sendFile(path.join(__dirname + './public/index.html'), 
+      { id: req.params.id, battletag: req.params.battletag } );
 });
 
 app.get('/auth/bnet',
