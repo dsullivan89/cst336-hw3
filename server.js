@@ -67,13 +67,13 @@ app.get('/bnet', function(req, res) {
       id: req.user.id,
       battletag: req.user.battletag
     }
-  }
 
-  res.writeHead(200, {
-    'Content-Type': 'text/json'
-  });
-  res.write(data);
-  res.end();
+    res.writeHead(200, {
+      'Content-Type': 'text/json'
+    });
+    res.write(data);
+    res.end();
+  }
 });
 
 app.get('/', function(req, res) {
