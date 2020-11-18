@@ -41,7 +41,7 @@ var app = express();
 // configure Express
 app.use(cookieParser());
 
-app.use(express.static(__dirname + 'public'))
+app.use(express.static(__dirname + '/public'))
 
 app.use(session({ secret: 'blizzard',
                   saveUninitialized: true,
