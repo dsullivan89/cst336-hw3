@@ -17,7 +17,17 @@ var session = require('express-session');
 var passport = require('passport');
 
 let RedisStore = require('connect-redis')(session)
-let redisClient = redis.createClient()
+//let redisClient = redis.createClient()
+
+let redisClient;
+if (process.env.REDIS_URL) {
+  redisClient = redis.createClient(process.env.REDIS_URL);
+} else {
+  redisClient = redis.createClient({
+      host: process.env.REDIS_HOST,
+      port: process.env.REDIS_PORT
+  });
+}
 
 const OauthClient = require('./oauth/OAuthClient');
 const RealmService = require('./services/RealmService');
