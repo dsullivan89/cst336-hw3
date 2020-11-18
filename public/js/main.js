@@ -22,9 +22,11 @@ $(document).ready(function() {
 		get_bnetData();
 	});
 
+	/*
 	$("#battlenetLink").click(function() {
 		auth_battlenet();
 	});
+	*/
 
 	/*
 	function auth_battlenet() {
