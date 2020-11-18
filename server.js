@@ -72,14 +72,12 @@ app.get('/initialData', function(req, res) {
   res.end();
 });
 
-app.get(['/', '/index.html'], function(req, res) {
+app.get(['/', '/:code', '/index.html'], function(req, res) {
   if(req.isAuthenticated()) {
-    var data = {
-      id: req.user.id,
-      battletag: req.user.battletag
-    }
-
-    res.render('index', { id: req.user.id, battletag: req.user.battletag });
+    var userid = req.user.id;
+    var userbattletag = req.user.battletag;
+    
+    res.render('index', { id: userid, battletag: userbattletag });
 
     //res.sendFile(path.join(__dirname + '/public/index.html'), 
     //  { id: req.user.id, battletag: req.user.battletag } );
@@ -89,7 +87,7 @@ app.get(['/', '/index.html'], function(req, res) {
     //res.end();
   }
 
-  res.render('index');
+  res.render('index', { id: "N/A", battletag: "N/A" });
 
   //res.sendFile(path.join(__dirname + '/public/index.html'));
 });
