@@ -19,7 +19,7 @@ $(document).ready(function() {
 
 	function updateDispay(data)
 	{
-		console.log(data);
+		console.log(data.id);
 	}
 
 }); // document ready
