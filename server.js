@@ -10,6 +10,9 @@ var BnetStrategy = require('passport-bnet').Strategy;
 const server = require('http').createServer(app);
 const port = process.env.PORT || 3000;
 
+var BNET_ID = process.env.BNET_ID
+var BNET_SECRET = process.env.BNET_SECRET
+
 server.listen(port, () => {
   console.log('Server listening at port %d', port);
 });
@@ -17,8 +20,8 @@ server.listen(port, () => {
 // Use the BnetStrategy within Passport.
 passport.use(
   new BnetStrategy(
-    { clientID: process.env.BNET_ID,
-      clientSecret: process.env.BNET_SECRET,
+    { clientID: BNET_ID,
+      clientSecret: BNET_SECRET,
       scope: "wow.profile sc2.profile",
       callbackURL: "https://dasu20-hw3.herokuapp.com/auth/bnet/callback" },
     function(accessToken, refreshToken, profile, done) {
@@ -38,7 +41,3 @@ app.get('/auth/bnet/callback',
     });
 
 app.use(express.static(path.join(__dirname, 'public')));
-
-var BnetStrategy = require('passport-bnet').Strategy;
-var BNET_ID = process.env.BNET_ID
-var BNET_SECRET = process.env.BNET_SECRET
