@@ -11,11 +11,11 @@ $(document).ready(function() {
 	 
 	 get().then((data) => {
 		var parsed = JSON.parse(data);
-		// do something with the data
+		updateBattleTagDisplay(data.battletag);
 	 });
 
-	 function updateBattleTagDisplay(battleTag) {
-		 $("#battletagDisplay").html(battleTag);
+	 function updateBattleTagDisplay(battletag) {
+		 $("#battletagDisplay").html(battletag);
 	 }
 
 
