@@ -4,6 +4,9 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
+
+
+
 const path = require('path');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
@@ -12,10 +15,14 @@ var BnetStrategy = require('passport-bnet').Strategy;
 const server = require('http').createServer(app);
 const port = process.env.PORT || 3000;
 
-var BNET_ID = process.env.BNET_ID
-var BNET_SECRET = process.env.BNET_SECRET
+var BNET_ID = process.env.BNET_ID;
+var BNET_SECRET = process.env.BNET_SECRET;
 
-app.use(express.static(path.join(__dirname, 'public')));
+
+app.set('view engine', 'ejs');
+
+// app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', path.join(__dirname, '/views'));
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -63,20 +70,26 @@ app.get('/initialData', function(req, res) {
   res.end();
 });
 
-app.get(['/', '/:id/:battletag/' ], function(req, res) {
+app.get(['/', '/index.html'], function(req, res) {
   if(req.isAuthenticated()) {
     var data = {
       id: req.user.id,
       battletag: req.user.battletag
     }
+
+    res.render('index', data);
+
+    //res.sendFile(path.join(__dirname + '/public/index.html'), 
+    //  { id: req.user.id, battletag: req.user.battletag } );
     // res.send(data);
     //res.writeHead(200, {'Content-Type': 'text/json'});
     //res.write(data);
     //res.end();
   }
 
-  res.sendFile(path.join(__dirname + '/public/index.html'), 
-      { id: req.params.id, battletag: req.params.battletag } );
+  res.render('index');
+
+  //res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
 app.get('/auth/bnet',
