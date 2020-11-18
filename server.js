@@ -10,8 +10,14 @@ var async = require("async");
 
 const path = require('path');
 var cookieParser = require('cookie-parser');
+
+const redis = require('redis')
 var session = require('express-session');
+
 var passport = require('passport');
+
+let RedisStore = require('connect-redis')(session)
+let redisClient = redis.createClient()
 
 const OauthClient = require('./oauth/OAuthClient');
 const RealmService = require('./services/RealmService');
@@ -32,11 +38,16 @@ app.use('/public', express.static('public'));
 app.set('views', path.join(__dirname, '/views'));
 
 
+const redisSessionStore = new RedisStore({
+  client: redisClient
+});
 
 app.use(cookieParser());
-app.use(session({ secret: 'blizzard',
+app.use(session({ name: 'blizzard-api-example-session',
+                  secret: 'blizzard-api-example-session-secret',
                   saveUninitialized: true,
-                  resave: true }));
+                  resave: true,
+                  store: redisSessionStore }));
 
 app.use(passport.initialize());
 app.use(passport.session());                  
