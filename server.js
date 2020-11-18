@@ -31,17 +31,20 @@ passport.use(
     })
 );
 
-app.get('/', function(req, res) {
-  if(req.isAuthenticated()) {
-
-    var dataToSend = {
-      id: res.user.id,
-      battletag: res.user.battletag
-    }
-
-    res.send(dataToSend);
-
+app.get('/initialData', function(req, res) {
+  var data = {
+    id: req.user.id,
+    battletag: req.user.battletag
   }
+
+  res.writeHead(200, {'Content-Type': 'text/json'});
+  res.write(data);
+  res.end();
+});
+
+app.get('/', function(req, res) {
+  
+  res.sendFile(path.join(__dirname + '/index.html'));
 });
 
 app.get('/auth/bnet',
