@@ -13,6 +13,8 @@ const port = process.env.PORT || 3000;
 var BNET_ID = process.env.BNET_ID
 var BNET_SECRET = process.env.BNET_SECRET
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 server.listen(port, () => {
   console.log('Server listening at port %d', port);
 });
@@ -55,5 +57,3 @@ app.get('/auth/bnet/callback',
     function(req, res){
         res.redirect('/');
     });
-
-app.use(express.static(path.join(__dirname, 'public')));
