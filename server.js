@@ -15,6 +15,14 @@ var BNET_SECRET = process.env.BNET_SECRET
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(cookieParser());
+app.use(session({ secret: 'blizzard',
+                  saveUninitialized: true,
+                  resave: true }));
+
 server.listen(port, () => {
   console.log('Server listening at port %d', port);
 });

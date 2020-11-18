@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+	/*
 	var url = "https://us.battle.net/oauth/token";
 
 	var xhr = new XMLHttpRequest();
@@ -20,6 +21,7 @@ $(document).ready(function() {
 
 	xhr.send(JSON.stringify(data));
 	// xhr.send();
+	*/
 
 
 }); // document ready
