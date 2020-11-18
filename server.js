@@ -162,9 +162,10 @@ app.get('/realmlist', async (req, res, next) => {
 
 });
 
-app.get('/authenticated/characters', async (req, res, next) => {
+app.get('/characters', async (req, res, next) => {
   try {
-      const characters = await characterService.getUsersCharactersList(req.user.token);
+      const characters = await realmService.getUsersCharactersList(req.user.token);
+      //getUsersCharactersList(req.user.token);
       res.render('characters', {
           characters
       });
