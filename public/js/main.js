@@ -19,16 +19,28 @@ $(document).ready(function() {
 	init();
 
 	$("#infoButton").click(function() {
-		get();
+		get_bnetData();
 	});
 
-	function get() {
+	$("#battlenetLink").click(function() {
+		auth_battlenet();
+	});
+
+	function auth_battlenet() {
+		return new Promise((resolve, reject) => {
+			var req = new XMLHttpRequest();
+			req.open('GET', '/auth/bnet');
+			req.onload = () => resolve(req.response);
+		 });
+	}
+
+	function get_bnetData() {
 		return new Promise((resolve, reject) => {
 		  var req = new XMLHttpRequest();
 		  req.open('GET', '/bnet');
 		  req.onload = () => resolve(req.response);
 		});
-	 }           
+	 }
 	  // then to get the data, call the function
 
 	 function init() {
