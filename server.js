@@ -52,7 +52,7 @@ passport.use(
     { clientID: BNET_ID,
       clientSecret: BNET_SECRET,
       scope: "wow.profile sc2.profile",
-      callbackURL: "https://dasu20-hw3.herokuapp.com/" },
+      callbackURL: "https://dasu20-hw3.herokuapp.com/auth/bnet/callback" },
     function(accessToken, refreshToken, profile, done) {
       process.nextTick(function () {
         return done(null, profile);
