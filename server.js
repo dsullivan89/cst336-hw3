@@ -75,7 +75,7 @@ app.get(['/', '/:id/:battletag/' ], function(req, res) {
     //res.end();
   }
 
-  res.sendFile(path.join(__dirname + './public/index.html'), 
+  res.sendFile(path.join(__dirname + '/public/index.html'), 
       { id: req.params.id, battletag: req.params.battletag } );
 });
 
