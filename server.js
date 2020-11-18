@@ -65,13 +65,14 @@ app.get('/initialData', function(req, res) {
 
 app.get('/', function(req, res) {
   if(req.isAuthenticated()) {
-    req.redirect(url.format({
-    pathname:"/initialData",
-    query: {
-      "id": req.user.id,
-      "tag": req.user.battletag
-      }
-    }))
+    var data = {
+      id: req.user.id,
+      battletag: req.user.battletag
+    }
+  
+    res.writeHead(200, {'Content-Type': 'text/json'});
+    res.write(data);
+    res.end();
   }
 
   res.sendFile(path.join(__dirname + './public/index.html'));
