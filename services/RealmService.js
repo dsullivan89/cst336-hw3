@@ -5,7 +5,31 @@ class RealmService {
 
     constructor(oauthClient) {
         this.oauthClient = oauthClient;
-    }
+	 }
+	 
+	 // https://us.api.blizzard.com/data/wow/realm/index?namespace=dynamic-classic-us&locale=en_US&access_token=USBgoEKse2GFzIXCIOCXTzM4vZfqpfldDm
+
+	 async getRealmsIndex() {
+		const oauthToken = await this.oauthClient.getToken();
+		//const encodedCharacterName = encodeURIComponent(characterName);
+		//const realmNameSlug = slug(realmName);
+		
+		const realmListDocumentURL = `https://us.api.blizzard.com/data/wow/realm/index?namespace=dynamic-classic-us&locale=en_US&access_token=USBgoEKse2GFzIXCIOCXTzM4vZfqpfldDm`;
+
+		//const characterSummaryDocumentURL = `https://us.api.blizzard.com/profile/wow/character/${realmNameSlug}/${encodedCharacterName}`;
+		const response = await rp.get({
+			 uri: realmListDocumentURL,
+			 json: true,
+			 qs: {
+				  locale: "en_US",
+				  namespace: "dynamic-classic-us"
+			 },
+			 headers: {
+				  Authorization: `Bearer ${oauthToken}`
+			 }
+		});
+		return response;
+  }
 
     async getRealms(namespace, locale, orderbyField, pageNumber) {
         const oauthToken = await this.oauthClient.getToken();
