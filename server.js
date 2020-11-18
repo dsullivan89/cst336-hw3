@@ -149,7 +149,7 @@ app.get('/auth/bnet/callback',
 app.get('/realmlist', async (req, res, next) => {
   
   try {
-    const characters = await characterService.getUsersCharactersList(req.user.token);
+    const characters = await realmService.getUsersCharactersList(req.user.token);
     res.render('realms', {
         characters
     });
