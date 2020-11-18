@@ -30,7 +30,8 @@ $(document).ready(function() {
 		return new Promise((resolve, reject) => {
 			var req = new XMLHttpRequest();
 			req.open('GET', '/auth/bnet');
-			req.onload = () => resolve(req.response);
+			req.send();
+			// req.onload = () => resolve(req.response);
 		 });
 	}
 
