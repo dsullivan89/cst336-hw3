@@ -8,7 +8,6 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
 var BnetStrategy = require('passport-bnet').Strategy;
-var GitHubStrategy = require('passport-github').Strategy;
 
 var BNET_ID = process.env.BNET_ID;
 var BNET_SECRET = process.env.BNET_SECRET;
@@ -68,8 +67,9 @@ app.get('/', function(req, res) {
     output += '<a href="/logout">Logout</a>';
     res.send(output);
   } else {
-    res.send('<h1>Express OAuth Test</h1>' + 
-             '<a href="/auth/bnet">Login with Bnet</a>');
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    //res.send('<h1>Express OAuth Test</h1>' + 
+    //         '<a href="/auth/bnet">Login with Bnet</a>');
   }
 });
 
