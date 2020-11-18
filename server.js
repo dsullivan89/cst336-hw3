@@ -125,7 +125,7 @@ app.get('/realmlist', async (req, res, next) => {
   
   try {
     const characters = await characterService.getUsersCharactersList(req.user.token);
-    res.render('characters', {
+    res.render('realms', {
         characters
     });
   } catch (e) {
@@ -133,7 +133,7 @@ app.get('/realmlist', async (req, res, next) => {
     }
     }, (err, req, res, next) => {
     logger.error(err);
-    res.render("error-characters");
+    res.render("error-realms");
 
 });
 
