@@ -5,12 +5,17 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 
-
+const rp = require('request-promise');
+var async = require("async");
 
 const path = require('path');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var passport = require('passport');
+
+const OauthClient = require('./oauth/OAuthClient');
+const RealmService = require('./services/RealmService');
+
 var BnetStrategy = require('passport-bnet').Strategy;
 const server = require('http').createServer(app);
 const port = process.env.PORT || 3000;
@@ -62,6 +67,9 @@ passport.use(
     })
 );
 
+const oauthClient = new OauthClient();
+const realmService = new RealmService(oauthClient);
+
 app.get('/initialData', function(req, res) {
   
   var data = {
@@ -112,3 +120,33 @@ app.get('/auth/bnet/callback',
     function(req, res){
         res.redirect('/');
     });
+
+app.get('/realmlist', async (req, res, next) => {
+  
+  try {
+    const characters = await characterService.getUsersCharactersList(req.user.token);
+    res.render('characters', {
+        characters
+    });
+  } catch (e) {
+    next(e);
+    }
+    }, (err, req, res, next) => {
+    logger.error(err);
+    res.render("error-characters");
+
+});
+
+app.get('/authenticated/characters', async (req, res, next) => {
+  try {
+      const characters = await characterService.getUsersCharactersList(req.user.token);
+      res.render('characters', {
+          characters
+      });
+  } catch (e) {
+      next(e);
+  }
+}, (err, req, res, next) => {
+  logger.error(err);
+  res.render("error-characters");
+});

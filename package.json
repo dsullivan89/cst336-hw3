@@ -19,6 +19,7 @@
   "homepage": "https://github.com/dsullivan89/cst336-hw3#readme",
   "dependencies": {
     "all": "0.0.0",
+    "async": "^3.2.0",
     "bluebird": "^3.7.2",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
@@ -35,6 +36,7 @@
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
     "simple-oauth2": "^2.2.1",
+    "slug": "^4.0.2",
     "socket.io": "^3.0.1",
     "throng": "^5.0.0",
     "tmp": "^0.2.1",

@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	httpGet("/", updateDispay);
+	httpGet("/realmlist", updateList);
 	
 	function httpGet(url, callback)
 	{
@@ -17,7 +17,7 @@ $(document).ready(function() {
 		xhr.send(null);
 	}
 
-	function updateDispay(data)
+	function updateList(data)
 	{
 		console.log(data);
 	}
