@@ -1,10 +1,9 @@
 $(document).ready(function() {
 
+	httpGet("/initialData", updateDispay);
 	
 	function httpGet(url, callback)
 	{
-		url = "/initialData";
-
 		var xhr = new XMLHttpRequest();
 
 		xhr.onreadystatechange = function () {
@@ -16,6 +15,11 @@ $(document).ready(function() {
 
 		xhr.open("GET", url, true);
 		xhr.send(null);
+	}
+
+	function updateDispay(data)
+	{
+		console.log(data);
 	}
 
 }); // document ready
