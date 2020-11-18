@@ -29,6 +29,14 @@ server.listen(port, () => {
   console.log('Server listening at port %d', port);
 });
 
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
+
 // Use the BnetStrategy within Passport.
 passport.use(
   new BnetStrategy(
