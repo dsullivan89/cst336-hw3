@@ -77,7 +77,7 @@ app.get(['/', '/:code', '/index.html'], function(req, res) {
     var userid = req.user.id;
     var userbattletag = req.user.battletag;
     
-    res.render('index', { id: userid, battletag: userbattletag });
+    res.render('index', { code: req.params.name, id: userid, battletag: userbattletag });
 
     //res.sendFile(path.join(__dirname + '/public/index.html'), 
     //  { id: req.user.id, battletag: req.user.battletag } );
