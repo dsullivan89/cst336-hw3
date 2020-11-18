@@ -67,7 +67,7 @@ app.get('/', function(req, res) {
     output += '<a href="/logout">Logout</a>';
     res.send(output);
   } else {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile('public/index.html', {root: __dirname});
     //res.send('<h1>Express OAuth Test</h1>' + 
     //         '<a href="/auth/bnet">Login with Bnet</a>');
   }
