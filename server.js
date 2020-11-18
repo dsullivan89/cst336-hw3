@@ -61,19 +61,39 @@ app.get('/auth/bnet/callback',
           res.redirect('/');
         });
 
+app.get('/bnet', function(req, res) {
+  var data = {
+    id: req.user.id,
+    battletag: req.user.battletag
+  }
+
+  res.writeHead(200, {
+    'Content-Type': 'text/json'
+  });
+  res.write(data);
+  res.end();
+});
+
 app.get('/', function(req, res) {
+
+  res.sendFile(path.join(__dirname + '/index.html'));
+
+  /*
   if(req.isAuthenticated()) {
+
+    
     var output = '<h1>Express OAuth Test</h1>' + req.user.id + '<br>';
     if(req.user.battletag) {
       output += req.user.battletag + '<br>';
     }
     output += '<a href="/logout">Logout</a>';
     res.send(output);
-  } else {
-    res.sendFile(path.join(__dirname + '/index.html'));
+    
+  } else { 
+    
     //res.send('<h1>Express OAuth Test</h1>' + 
     //         '<a href="/auth/bnet">Login with Bnet</a>');
-  }
+  } */
 });
 
 app.get('/logout', function(req, res) {
