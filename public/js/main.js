@@ -15,7 +15,7 @@ $(document).ready(function() {
 		}); //fetch
 		let data = await response.json();
 		return data.access_token;
-  } //generateToken
+   } //generateToken
 	init();
 
 	$("#infoButton").click(function() {
@@ -44,7 +44,7 @@ $(document).ready(function() {
 	  // then to get the data, call the function
 
 	 function init() {
-		get().then((data) => {
+		get_bnetData().then((data) => {
 			var parsed = JSON.parse(data);
 			updateBattleTagDisplay(data.battletag);
 			console.log("updated battletag display. can you see it?");
