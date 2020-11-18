@@ -1,5 +1,10 @@
 $(document).ready(function() {
 
+	$("#submit").click(function(){
+		location.assign('/realmlist');
+	});
+
+	/*
 	httpGet("/realmlist", updateList);
 	
 	function httpGet(url, callback)
@@ -21,5 +26,6 @@ $(document).ready(function() {
 	{
 		console.log(data);
 	}
+	*/
 
 }); // document ready
