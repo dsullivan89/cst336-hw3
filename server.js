@@ -62,9 +62,11 @@ app.get('/auth/bnet/callback',
         });
 
 app.get('/bnet', function(req, res) {
-  var data = {
-    id: req.user.id,
-    battletag: req.user.battletag
+  if(req.isAuthenticated()) {
+    var data = {
+      id: req.user.id,
+      battletag: req.user.battletag
+    }
   }
 
   res.writeHead(200, {
