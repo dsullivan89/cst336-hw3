@@ -33,7 +33,7 @@ class RealmService {
 
     async getRealms(namespace, locale, orderbyField, pageNumber) {
         const oauthToken = await this.oauthClient.getToken();
-        console.log(JSON.stringify(oauthToken));
+        // console.log(JSON.stringify(oauthToken));
         //const encodedCharacterName = encodeURIComponent(characterName);
 		  //const realmNameSlug = slug(realmName);
 		  
@@ -53,7 +53,7 @@ class RealmService {
                 namespace: "dynamic-classic-us"
             },
             headers: {
-                Authorization: `Bearer ${oauthToken}`
+                Authorization: `Bearer ${JSON.stringify(oauthToken)}`
             }
         });
         return response;
