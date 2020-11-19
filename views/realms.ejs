@@ -1,15 +1,25 @@
 Here are your realms.
 
 <% if (locals.realmData) { %>	<!-- has data-->
-	Page <%= realmData.page %> of <%= realmData.pageCount %><br>
+
+	<%= realmData.results[0].data.realms[0].name.en_US %>
+	
+	Results <%= realmData.results.length %> <br>
 	<table>
+		<tr>
+			<td>Name</td>
+			<td>Type</td>
+			<td>Has a Queue</td>
+			<td>Status</td>
+			<td>Population</td>
+		</tr>
 	<% for(var result = 0; result < realmData.results.length; result++) { %>
 		<tr>
-		<% for(var realm = 0; realm < realmData.results.data.realms.length; realm++) { %>
-			<td><%= realm.name %></td>
-			<td><%= realm.type.name.en_US %></td>
-			<td><%= realm.type %></td>
-		<% } %>
+			<td><%= result.data.realms.name.en_US %></td>
+			<td><%= result.data.realms.type.name.en_US %></td>
+			<td><%= result.data.has_queue %></td>
+			<td><%= result.data.status.name.en_US %></td>
+			<td><%= result.data.population.name.en_US %></td>
 		</tr>
 	<% } %>
 	</table>
