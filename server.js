@@ -67,11 +67,21 @@ app.use(session({ name: 'blizzard-api-example-session',
                    })); // store: redisSessionStore
 
 app.use(passport.initialize());
-app.use(passport.session());                  
+app.use(passport.session());                
 
-server.listen(port, () => {
-  console.log('Server listening at port %d', port);
-});
+// Use the BnetStrategy within Passport.
+passport.use(
+  new BnetStrategy(
+    { clientID: BNET_ID,
+      clientSecret: BNET_SECRET,
+      scope: ["wow.profile", "sc2.profile"],
+      callbackURL: "https://dasu20-hw3.herokuapp.com/auth/bnet/callback" },
+    function(accessToken, refreshToken, profile, done) {
+      process.nextTick(function () {
+        return done(null, profile);
+      });
+    })
+);
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -81,19 +91,13 @@ passport.deserializeUser(function(obj, done) {
   done(null, obj);
 });
 
-// Use the BnetStrategy within Passport.
-passport.use(
-  new BnetStrategy(
-    { clientID: BNET_ID,
-      clientSecret: BNET_SECRET,
-      scope: "wow.profile sc2.profile",
-      callbackURL: "https://dasu20-hw3.herokuapp.com/auth/bnet/callback" },
-    function(accessToken, refreshToken, profile, done) {
-      process.nextTick(function () {
-        return done(null, profile);
-      });
-    })
-);
+server.listen(port, () => {
+  console.log('Server listening at port %d', port);
+});
+
+
+
+
 
 const oauthClient = new OauthClient();
 const realmService = new RealmService(oauthClient);
