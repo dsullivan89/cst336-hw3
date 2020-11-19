@@ -55,7 +55,7 @@ class RealmService {
                 _page: pageNumber
             },
             headers: {
-                Authorization: `Bearer ${JSON.stringify(oauthToken)}`
+                Authorization: `Bearer ${oauthToken.toString()}`
             }
         });
         return response;
