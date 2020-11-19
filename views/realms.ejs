@@ -9,7 +9,7 @@ Here are your realms.
 			<td>Status</td>
 			<td>Population</td>
 		</tr>
-	<% realmData.results.forEach(result => { %>
+	<% realmData.forEach(result => { %>
 		<td> <%= result[name] %> </td>
 		<td> <%= result[type] %> </td>
 		<td> <%= result[has_queue] %> </td>
