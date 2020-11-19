@@ -49,13 +49,13 @@ class RealmService {
             uri: realmListDocumentURL,
             json: true,
             qs: {
-                locale: "en_US",
-                namespace: "dynamic-classic-us",
+                locale: locale,
+                namespace: namespace,
                 orderby: orderbyField,
                 _page: pageNumber
             },
             headers: {
-                Authorization: `Bearer ${oauthToken.toString()}`
+                Authorization: `Bearer ${oauthToken.token.access_token}`
             }
         });
         return response;
