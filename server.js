@@ -14,7 +14,9 @@ var cookieParser = require('cookie-parser');
 //const redis = require('redis')
 var session = require('express-session');
 
-var passport = require('passport');
+var passport = require('./oauth/passport');
+const OauthClient = require('./oauth/OAuthClient');
+const RealmService = require('./services/RealmService');
 
 //let RedisStore = require('connect-redis')(session)
 //let redisClient = redis.createClient()
@@ -35,8 +37,8 @@ if (process.env.REDIS_URL) {
 }
 */
 
-const OauthClient = require('./oauth/OAuthClient');
-const RealmService = require('./services/RealmService');
+
+
 
 var BnetStrategy = require('passport-bnet').Strategy;
 const server = require('http').createServer(app);
@@ -59,6 +61,9 @@ const redisSessionStore = new RedisStore({
 });
 */
 
+const oauthClient = new OauthClient();
+const realmService = new RealmService(oauthClient);
+
 app.use(cookieParser());
 app.use(session({ name: 'blizzard-api-example-session',
                   secret: 'blizzard-api-example-session-secret',
@@ -67,21 +72,7 @@ app.use(session({ name: 'blizzard-api-example-session',
                    })); // store: redisSessionStore
 
 app.use(passport.initialize());
-app.use(passport.session());                
-
-// Use the BnetStrategy within Passport.
-passport.use(
-  new BnetStrategy(
-    { clientID: BNET_ID,
-      clientSecret: BNET_SECRET,
-      scope: ["wow.profile", "sc2.profile"],
-      callbackURL: "https://dasu20-hw3.herokuapp.com/auth/bnet/callback" },
-    function(accessToken, refreshToken, profile, done) {
-      process.nextTick(function () {
-        return done(null, profile);
-      });
-    })
-);
+app.use(passport.session());
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -95,12 +86,12 @@ server.listen(port, () => {
   console.log('Server listening at port %d', port);
 });
 
-
-
-
-
-const oauthClient = new OauthClient();
-const realmService = new RealmService(oauthClient);
+app.use((req, res, next) => {
+  if (req.isAuthenticated()) {
+      res.locals.currentUser = req.user;
+  }
+  next();
+});
 
 app.get('/initialData', function(req, res) {
   
@@ -183,3 +174,8 @@ app.get('/characters', async (req, res, next) => {
   logger.error(err);
   res.render("error-characters");
 });
+
+module.exports = async () => {
+  await oauthClient.getToken();
+  return Promise.resolve(app);
+};
