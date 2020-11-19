@@ -1,7 +1,8 @@
 Here are your realms.
 
 <% if (locals.realmData) { %>	<!-- has data-->	
-	Results <%= realmData.results.length %> <br>
+	<%= JSON.stringify(realmData) %>
+	Results <%= realmData.results[length] %> <br>
 	<table>
 		<tr>
 			<td>Name</td>
@@ -10,14 +11,12 @@ Here are your realms.
 			<td>Status</td>
 			<td>Population</td>
 		</tr>
-	<% for(var key in realmData) { %>
-		<tr>
-			<td><%= realmData[key].realms[name] %></td>
-			<td><%= result.data.realms.type.name.en_US %></td>
-			<td><%= result.data.has_queue %></td>
-			<td><%= result.data.status.name.en_US %></td>
-			<td><%= result.data.population.name.en_US %></td>
-		</tr>
-	<% } %>
+	<% realmData.results.forEach(result => { %>
+		<td> <%= result[name] %> </td>
+		<td> <%= result[type] %> </td>
+		<td> <%= result[has_queue] %> </td>
+		<td> <%= result[status] %> </td>
+		<td> <%= result[population] %> </td>
+	<% }); %>
 	</table>
 <% } %>
