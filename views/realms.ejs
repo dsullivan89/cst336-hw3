@@ -12,7 +12,7 @@ Here are your realms.
 		</tr>
 	<% for(var key in realmData) { %>
 		<tr>
-			<td><%= realmData[key].realms.name %></td>
+			<td><%= realmData[key].realms[name] %></td>
 			<td><%= result.data.realms.type.name.en_US %></td>
 			<td><%= result.data.has_queue %></td>
 			<td><%= result.data.status.name.en_US %></td>
