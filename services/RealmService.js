@@ -33,6 +33,7 @@ class RealmService {
 
     async getRealms(namespace, locale, orderbyField, pageNumber) {
         const oauthToken = await this.oauthClient.getToken();
+        console.log(JSON.stringify(oauthToken));
         //const encodedCharacterName = encodeURIComponent(characterName);
 		  //const realmNameSlug = slug(realmName);
 		  
