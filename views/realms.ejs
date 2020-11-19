@@ -10,9 +10,9 @@ Here are your realms.
 			<td>Status</td>
 			<td>Population</td>
 		</tr>
-	<% for(result of realmData.results) { %>
+	<% for(var key in realmData) { %>
 		<tr>
-			<td><%= result.data.realms.name.en_US %></td>
+			<td><%= realmData[key].realms.name %></td>
 			<td><%= result.data.realms.type.name.en_US %></td>
 			<td><%= result.data.has_queue %></td>
 			<td><%= result.data.status.name.en_US %></td>
