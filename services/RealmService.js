@@ -39,7 +39,7 @@ class RealmService {
 
 		  //https://us.api.blizzard.com/data/wow/search/connected-realm?namespace=dynamic-classic-us&locale=en_US&status.type=UP&realms.timezone=America%2FNew_York&orderby=id&_page=1&access_token=USBgoEKse2GFzIXCIOCXTzM4vZfqpfldDm
 		  
-		  const realmListDocumentURL = `https://us.api.blizzard.com/data/wow/connected-realm?namespace=dynamic-classic-us&locale=en_US`; //&access_token=${oauthToken}`; // USBgoEKse2GFzIXCIOCXTzM4vZfqpfldDm
+		  const realmListDocumentURL = `https://us.api.blizzard.com/data/wow/connected-realm?namespace=${namespace}&locale=${locale}&timezone=America%2FNew_York&orderby=${orderbyField}&_page=${pageNumber}&access_token=${oauthToken}`;
 		   // removed /index after realm in the above string
 		  // `https://us.api.blizzard.com/data/wow/search/realm?namespace=${namespace}&locale=${locale}&timezone=America%2FNew_York&orderby=${orderbyField}&_page=${pageNumber}&access_token=${oauthToken}`;
 
