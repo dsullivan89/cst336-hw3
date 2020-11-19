@@ -156,8 +156,7 @@ app.get('/auth/bnet/callback',
 app.get('/realmlist', async (req, res, next) => {
   
   try {
-    const oauthToken = await this.oauthClient.getToken();
-    const realms = await realmService.getRealms(oauthToken, "dynamic-classic-us", "en_US", "id", "1");
+    const realms = await realmService.getRealms("dynamic-classic-us", "en_US", "id", "1");
     res.render('realms', {
       realms
     });
