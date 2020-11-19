@@ -1,11 +1,6 @@
 const rp = require('request-promise');
 const slug = require('slug');
 
-const {
-    NAME_SPACE = "dynamic-classic-us",
-    DEFAULT_LOCALE = "en_US"
-}
-
 class RealmService {
 
     constructor(oauthClient) {
