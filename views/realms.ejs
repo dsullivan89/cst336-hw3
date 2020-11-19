@@ -1,1 +1,21 @@
 Here are your realms.
+
+<% if (locals.realmData) { %>	<!-- has data-->
+	Page <%= realmData.page %> of <%= realmData.pageCount %><br>
+	<table>
+	<% for(var result = 0; result < realmData.results.length; result++) { %>
+		<tr>
+		<% for(var realm = 0; realm < realmData.results.data.realms.length; realm++) { %>
+			<td><%= realm.name %></td>
+			<td><%= realm.type.name.en_US %></td>
+			<td><%= realm.type %></td>
+		<% } %>
+		</tr>
+	<% } %>
+	</table>
+<% } %>
+
+<ul>
+	<%= for(var realm of realms)
+	<li></li>
+</ul>
