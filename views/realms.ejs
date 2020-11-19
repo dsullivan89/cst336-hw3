@@ -10,7 +10,7 @@ Here are your realms.
 			<td>Status</td>
 			<td>Population</td>
 		</tr>
-	<% for(var result = 0; result < realmData.results.length; result++) { %>
+	<% for(result of realmData.results) { %>
 		<tr>
 			<td><%= result.data.realms.name.en_US %></td>
 			<td><%= result.data.realms.type.name.en_US %></td>
