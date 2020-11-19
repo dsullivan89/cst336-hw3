@@ -37,8 +37,9 @@ class RealmService {
 		  //const realmNameSlug = slug(realmName);
 		  
 		  
-		  //'https://us.api.blizzard.com/data/wow/connected-realm/index?namespace=dynamic-classic-us&locale=en_US&access_token=USBgoEKse2GFzIXCIOCXTzM4vZfqpfldDm';
-		  const realmListDocumentURL = `https://us.api.blizzard.com/data/wow/search/realm?namespace=${namespace}&locale=${locale}&timezone=America%2FNew_York&orderby=${orderbyField}&_page=${pageNumber}&access_token=${oauthToken}`;
+		  const realmListDocumentURL = 'https://us.api.blizzard.com/data/wow/connected-realm/index?namespace=dynamic-classic-us&locale=en_US&access_token=USBgoEKse2GFzIXCIOCXTzM4vZfqpfldDm';
+		   
+		  // `https://us.api.blizzard.com/data/wow/search/realm?namespace=${namespace}&locale=${locale}&timezone=America%2FNew_York&orderby=${orderbyField}&_page=${pageNumber}&access_token=${oauthToken}`;
 
         //const characterSummaryDocumentURL = `https://us.api.blizzard.com/profile/wow/character/${realmNameSlug}/${encodedCharacterName}`;
         const response = await rp.get({
