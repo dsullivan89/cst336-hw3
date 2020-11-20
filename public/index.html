@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Starcraft II API</title>
+		<title>Blizzard API</title>
 		<link rel="stylesheet" 
 			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
 			integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" 
@@ -12,23 +12,68 @@
 	</head>
 	<body>
 		<header>
-			<h1>Starcraft II API</h1>
+			<h1>Blizzard API Example</h1>
 		</header>
 		<div class="formContainer">
 			<a href="/auth/bnet">Login with Battle.net</a>
-			<form>
-				Account ID: <span id="accountID"></span><br>
-				Region ID: <span id="regionID"></span><br>
-				Realm ID: <span id="realmID"></span><br>
-				Profile ID: <span id="profileID"></span><br>
+			Welcome <%= battletag %> <br>
+			<h3>Search for Realms</h3>
+			<!-- Form -->
+			<form action="/realmlist" method="post">
 				Region:
 				<select id="region" name="region">
-					<option> Select One </option>
+					<option value="none"> Select One </option>
 					<option value="us"> United States </option>
 					<option value="eu"> European Union </option>
 					<option value="kr"> Korea </opton>
-					<option value="tw"> Taiwan </opton>
+					<option value="tw"> Taiwan </option>
 				</select><br>
+				<span id="regionValidation"></span><br>
+				Namespace:
+				<select id="namespace" name="namespace">
+					<option value="dynamic-classic-">Classic WoW</option>
+					<option value="dynamic-">Retail WoW</option>
+				</select><br>
+				<span id="namespaceValidation"></span><br>
+				Locale:
+				<select id="locale" name="locale">
+					<option value="en_US">English-US</option>
+					<option value="ru_RU">Russian</option>
+					<option value="en_GB">English-GB</option>
+					<option value="zh_TW">Chinese-Taiwan</option>
+					<option value="ko_KR">Korean</option>
+					<option value="es_MX">Spanish-Mexico</option>
+					<option value="pt_BR">Portuguese-Brazil</option>
+					<option value="es_ES">Spanish-Spain</option>
+					<option value="zh_CN">Chinese</option>
+					<option value="fr_FR">French</option>
+					<option value="de_DE">Dutch</option>
+				</select><br>
+				Status: 	<input type="radio" name="status" value="UP"> Up
+							<input type="radio" name="status" value="DOWN"> Down<br>
+				<span id="statusValidation"></span><br>
+				Timezone:
+				<select id="timezone" name="timezone">
+					<!-- Region: US -->
+					<option value="America/Los_Angeles">America/Los Angeles</option>
+					<option value="America/New_York">America/New York</option>
+					<option value="Australia/Melbourne">Australia/Melbourne</option>
+					<!-- Region: EU -->
+					<option value="Europe/Paris">Europe/Paris</option>
+					<!-- Region: KR -->
+					<option value="Asia/Seoul">Asia/Seoul</option>
+				</select><br>
+				<span id="timezoneValidation"></span><br>
+				<p>* Valid values for this are:</p>
+				<ul>
+					<li>namespace</li>
+					<li>locale</li>
+					<li>status.type</li>
+					<li>realms.timezone</li>
+				</ul>
+				Order By: <input type="text" id="orderby" name="orderby"><br>
+				<span id="orderbyValidation"></span><br>
+				<a href="/realmlist">View Realms</a>
 			</form>
 		</div>
 			
@@ -36,7 +81,7 @@
 	<footer>
 		<feature>
 			<hr>
-			<img src="img/csumb.png" height="50px" width="50px" class="center" alt="csumb logo">
+			<img src="img/csumb.png" height="50px" width="50px" class="d-block center" alt="csumb logo">
 		</feature>
 		<div class="text-c">
 			<p class="small">CST336 Internet Programming. 2020&copy; Sullivan</p>

@@ -7,6 +7,7 @@ const path = require('path');
 
 const express = require('express');
 var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 
 var session = require('express-session');
 
@@ -44,6 +45,9 @@ const oauthClient = new OauthClient();
 const realmService = new RealmService(oauthClient);
 
 const app = express();
+
+var jsonParser = bodyParser.json();
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.set('view engine', 'ejs');
 
@@ -133,9 +137,17 @@ app.get('/auth/bnet/callback',
         res.redirect('/');
     });
 
-app.get('/realmlist', async (req, res, next) => {
+app.get('/realmlist', urlencodedParser, async (req, res, next) => {
   
   try {
+    const data = await realmService.getRealms(
+      req.body.namespace+req.body.region, 
+      req.body.locale, 
+      req.body.status, 
+      req.body.timezone, 
+      req.body.orderby, 
+      "1");
+    /*
     const data = await realmService.getRealms(
       "dynamic-classic-us", 
       "en_US", 
@@ -143,6 +155,7 @@ app.get('/realmlist', async (req, res, next) => {
       "America/New_York", 
       "id", 
       "1");
+    */
     console.log(JSON.stringify(data));
     res.render('realms', {
       realmData: data
