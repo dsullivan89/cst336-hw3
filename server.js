@@ -81,10 +81,6 @@ app.use((req, res, next) => {
 var BNET_ID = process.env.BNET_ID;
 var BNET_SECRET = process.env.BNET_SECRET;
 
-const redisSessionStore = new RedisStore({
-  client: redisClient
-});
-
 
 app.get('/initialData', function(req, res) {
   
