@@ -41,8 +41,8 @@ if (process.env.REDIS_URL) {
 
 
 //var BnetStrategy = require('passport-bnet').Strategy;
-const server = require('http').createServer(app);
-const port = process.env.PORT || 3000;
+// const server = require('http').createServer(app);
+// const port = process.env.PORT || 3000;
 
 var BNET_ID = process.env.BNET_ID;
 var BNET_SECRET = process.env.BNET_SECRET;

@@ -11,7 +11,7 @@ throng({
 	  console.log('Starting master process');
 	},
 	start: async (id) => {
-	  const app = await getServer();
-	  app.listen(port, () => console.log(`Worker ${id} listening on port ${port}`))
+	  const server = await getServer();
+	  server.listen(port, () => console.log(`Worker ${id} listening on port ${port}`))
 	}
  });
