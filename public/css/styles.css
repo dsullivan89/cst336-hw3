@@ -28,6 +28,10 @@ body {
 	display: inline-block;
 }
 
+.d-intable {
+	display: inline-table;
+}
+
 .thin-border {
 	border: 2px solid #f9fd00;
 }
