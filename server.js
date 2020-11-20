@@ -74,9 +74,9 @@ app.use(session({ name: 'blizzard-api-example-session',
                   resave: true
                    })); // store: redisSessionStore
 
-server.listen(port, () => {
-  console.log('Server listening at port %d', port);
-});
+//server.listen(port, () => {
+//  console.log('Server listening at port %d', port);
+//});
 
 app.use((req, res, next) => {
   if (req.isAuthenticated()) {
