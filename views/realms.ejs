@@ -12,11 +12,11 @@ Here are your realms.
 		</tr>
 	<% for (var i = 0; i < realmData.results.length; i++) { %>
 		<tr>
-			<td> <%= realmData.results[i].name %> </td>
-			<td> <%= realmData.results[i].type %> </td>
-			<td> <%= realmData.results[i].has_queue %> </td>
-			<td> <%= realmData.results[i].status %> </td>
-			<td> <%= realmData.results[i].population %> </td>
+			<td> <%= realmData.results[i].realms.name.en_US %> </td>
+			<td> <%= realmData.results[i].realms.type.name.en_US %> </td>
+			<td> <%= realmData.results[i].realms.has_queue %> </td>
+			<td> <%= realmData.results[i].realms.status.name.en_US %> </td>
+			<td> <%= realmData.results[i].population.name.en_US %> </td>
 		</tr>
 	<% } %>
 	</table>
