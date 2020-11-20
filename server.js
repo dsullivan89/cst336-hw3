@@ -20,7 +20,7 @@ const OauthClient = require('./oauth/OAuthClient');
 const RealmService = require('./services/RealmService');
 
 let RedisStore = require('connect-redis')(session)
-let redisClient = redis.createClient()
+//let redisClient = redis.createClient()
 
 const createLogger = require('pino');
 
