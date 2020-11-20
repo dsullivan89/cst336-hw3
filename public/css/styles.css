@@ -1,7 +1,7 @@
 
 body {
-	background-color: grey;
-	color: white;
+	background-color: rgb(2, 45, 102);
+	color: rgb(187, 165, 68);
 	text-align:center;
 }
 
@@ -22,6 +22,10 @@ body {
 
 .d-block {
 	display: block;
+}
+
+.thin-border {
+	border: 2px solid #cc0808;
 }
 
 .small {

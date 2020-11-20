@@ -14,38 +14,40 @@
 		<header>
 			<h1>Realm List</h1>
 		</header>
-		<!-- Table Start -->
-		<% if (locals.realmData) { %>	<!-- has data-->	
-			Results: <%= realmData.results.length %>
-			<table class="center">
-				<tr>
-					<td>#</td>
-					<td>Name</td>
-					<td>Type</td>
-					<td>Has a Queue</td>
-					<td>Status</td>
-					<td>Population</td>
-				</tr>
-				<% for (var i = 0; i < realmData.results.length; i++) { %>
-					<% for (var j = 0; j < realmData.results[i].data.realms.length; j++) { %>
-						<tr>
-							<td> <%= i %> </td>
-							<td> <%= realmData.results[i].data.realms[j].name.en_US %> </td>
-							<td> <%= realmData.results[i].data.realms[j].type.name.en_US %> </td>
-							<!-- This is a bool so we need to handle html elements like so... -->
-							<% if (realmData.results[i].data.realms[j].has_queue) { %>
-								<td> Yes </td>
-							<% } else { %>
-								<td> No </td>
-							<% } %>
-							<td> <%= realmData.results[i].data.status.name.en_US %> </td>
-							<td> <%= realmData.results[i].data.population.name.en_US %> </td>
-						</tr>
+		<div class="thin-border">
+			<!-- Table Start -->
+			<% if (locals.realmData) { %>	<!-- has data-->	
+				Results: <%= realmData.results.length %>
+				<table class="center">
+					<tr>
+						<td>#</td>
+						<td>Name</td>
+						<td>Type</td>
+						<td>Has a Queue</td>
+						<td>Status</td>
+						<td>Population</td>
+					</tr>
+					<% for (var i = 0; i < realmData.results.length; i++) { %>
+						<% for (var j = 0; j < realmData.results[i].data.realms.length; j++) { %>
+							<tr>
+								<td> <%= i %> </td>
+								<td> <%= realmData.results[i].data.realms[j].name.en_US %> </td>
+								<td> <%= realmData.results[i].data.realms[j].type.name.en_US %> </td>
+								<!-- This is a bool so we need to handle html elements like so... -->
+								<% if (realmData.results[i].data.realms[j].has_queue) { %>
+									<td> Yes </td>
+								<% } else { %>
+									<td> No </td>
+								<% } %>
+								<td> <%= realmData.results[i].data.status.name.en_US %> </td>
+								<td> <%= realmData.results[i].data.population.name.en_US %> </td>
+							</tr>
+						<% } %>
 					<% } %>
-				<% } %>
-			</table>
-		<% } %>
-		<!-- Table end-->
+				</table>
+			<% } %>
+			<!-- Table end-->
+		</div>
 	</body>
 	<footer>
 		<feature>
