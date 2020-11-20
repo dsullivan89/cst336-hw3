@@ -13,11 +13,11 @@ Here are your realms.
 	<% for (var i = 0; i < realmData.results.length; i++) { %>
 		<% for (var j = 0; j < realmData.results.realms.length; j++) { %>
 		<tr>
-			<td> <%= realmData.results[i].realms[j].name.en_US %> </td>
-			<td> <%= realmData.results[i].realms[j].type.name.en_US %> </td>
-			<td> <%= realmData.results[i].realms[j].has_queue %> </td>
-			<td> <%= realmData.results[i].realms[j].status.name.en_US %> </td>
-			<td> <%= realmData.results[i].realms[j].name.en_US %> </td>
+			<td> <%= realmData.results[i].data.realms[j].name.en_US %> </td>
+			<td> <%= realmData.results[i].data.realms[j].type.name.en_US %> </td>
+			<td> <%= realmData.results[i].data.realms[j].has_queue %> </td>
+			<td> <%= realmData.results[i].data.realms[j].status.name.en_US %> </td>
+			<td> <%= realmData.results[i].data.realms[j].name.en_US %> </td>
 		</tr>
 		<% } %>
 	<% } %>
