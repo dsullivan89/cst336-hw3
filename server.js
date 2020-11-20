@@ -3,7 +3,6 @@
 require('dotenv').config();
 
 const express = require('express');
-const app = express();
 
 const rp = require('request-promise');
 var async = require("async");
@@ -15,6 +14,8 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
 var passport = require('./oauth/passport');
+
+
 const OauthClient = require('./oauth/OAuthClient');
 const RealmService = require('./services/RealmService');
 
@@ -47,6 +48,16 @@ if (process.env.REDIS_URL) {
 var BNET_ID = process.env.BNET_ID;
 var BNET_SECRET = process.env.BNET_SECRET;
 
+/*
+const redisSessionStore = new RedisStore({
+  client: redisClient
+});
+*/
+
+const oauthClient = new OauthClient();
+const realmService = new RealmService(oauthClient);
+
+const app = express();
 
 app.set('view engine', 'ejs');
 
@@ -55,17 +66,8 @@ app.use('/public', express.static('public'));
 //app.use( express.static( "public" ) );
 app.set('views', path.join(__dirname, '/views'));
 
-/*
-const redisSessionStore = new RedisStore({
-  client: redisClient
-});
-*/
-
 app.use(passport.initialize());
 app.use(passport.session());
-
-const oauthClient = new OauthClient();
-const realmService = new RealmService(oauthClient);
 
 app.use(cookieParser());
 app.use(session({ name: 'blizzard-api-example-session',
