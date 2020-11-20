@@ -1,7 +1,7 @@
 
 body {
-	background-color: rgb(2, 45, 102);
-	color: rgb(187, 165, 68);
+	background-color: rgb(0, 0, 0);
+	color: rgb(123, 255, 0);
 	text-align:center;
 }
 
@@ -25,7 +25,7 @@ body {
 }
 
 .thin-border {
-	border: 2px solid #cc0808;
+	border: 2px solid #f9fd00;
 }
 
 .small {
