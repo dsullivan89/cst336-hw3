@@ -11,7 +11,7 @@ Here are your realms.
 			<td>Population</td>
 		</tr>
 	<% for (var i = 0; i < realmData.results.length; i++) { %>
-		<% for (var j = 0; j < realmData.results.data.realms.length; j++) { %>
+		<% for (var j = 0; j < realmData.results[i].data.realms.length; j++) { %>
 		<tr>
 			<td> <%= realmData.results[i].data.realms[j].name.en_US %> </td>
 			<td> <%= realmData.results[i].data.realms[j].type.name.en_US %> </td>
