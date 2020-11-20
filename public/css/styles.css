@@ -32,6 +32,10 @@ body {
 	font-size: 0.5em;
 }
 
+.a-width {
+	width: auto;
+}
+
 .text-c {
 	text-align: center;
 }
