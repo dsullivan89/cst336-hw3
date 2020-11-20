@@ -49,7 +49,7 @@ class RealmService {
             uri: realmListDocumentURL,
             json: true,
             headers: {
-                Authorization: `Bearer ${oauthToken}`
+                Authorization: `Bearer ${oauthToken.access_token}`
             }
         });
         return response;
