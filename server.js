@@ -2,29 +2,29 @@
 
 require('dotenv').config();
 
-const express = require('express');
-
-const rp = require('request-promise');
-var async = require("async");
-
+const Promise = require('bluebird');
 const path = require('path');
+
+const express = require('express');
 var cookieParser = require('cookie-parser');
 
-const redis = require('redis')
 var session = require('express-session');
+
+let RedisStore = require('connect-redis')(session);
+const redis = require('redis');
 
 var passport = require('./oauth/passport');
 
+// const rp = require('request-promise');
+// var async = require("async");
 
 const OauthClient = require('./oauth/OAuthClient');
 const RealmService = require('./services/RealmService');
 
-let RedisStore = require('connect-redis')(session)
-//let redisClient = redis.createClient()
-
 const createLogger = require('pino');
-
 const logger = createLogger();
+
+//let redisClient = redis.createClient()
 
 let redisClient;
 if (process.env.REDIS_URL) {
@@ -35,16 +35,6 @@ if (process.env.REDIS_URL) {
       port: process.env.REDIS_PORT
   });
 }
-
-
-
-
-//var BnetStrategy = require('passport-bnet').Strategy;
-// const server = require('http').createServer(app);
-// const port = process.env.PORT || 3000;
-
-var BNET_ID = process.env.BNET_ID;
-var BNET_SECRET = process.env.BNET_SECRET;
 
 const redisSessionStore = new RedisStore({
   client: redisClient
@@ -57,24 +47,8 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
-// app.use(express.static(path.join(__dirname, '/public')));
 app.use('/public', express.static('public'));
-//app.use( express.static( "public" ) );
 app.set('views', path.join(__dirname, '/views'));
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-app.use(cookieParser());
-app.use(session({ name: 'blizzard-api-example-session',
-                  secret: 'blizzard-api-example-session-secret',
-                  saveUninitialized: true,
-                  resave: true
-                   })); // store: redisSessionStore
-
-//server.listen(port, () => {
-//  console.log('Server listening at port %d', port);
-//});
 
 app.use((req, res, next) => {
   if (req.isAuthenticated()) {
@@ -82,6 +56,35 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+app.use(cookieParser());
+app.use(session({ name: 'blizzard-api-example-session',
+                  secret: 'blizzard-api-example-session-secret',
+                  saveUninitialized: true,
+                  resave: true,
+                  store: redisSessionStore }));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use((req, res, next) => {
+  if (req.isAuthenticated()) {
+      res.locals.currentUser = req.user;
+  }
+  next();
+});
+
+//var BnetStrategy = require('passport-bnet').Strategy;
+// const server = require('http').createServer(app);
+// const port = process.env.PORT || 3000;
+
+var BNET_ID = process.env.BNET_ID;
+var BNET_SECRET = process.env.BNET_SECRET;
+
+const redisSessionStore = new RedisStore({
+  client: redisClient
+});
+
 
 app.get('/initialData', function(req, res) {
   
