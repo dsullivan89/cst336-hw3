@@ -40,7 +40,7 @@ if (process.env.REDIS_URL) {
 
 
 
-var BnetStrategy = require('passport-bnet').Strategy;
+//var BnetStrategy = require('passport-bnet').Strategy;
 const server = require('http').createServer(app);
 const port = process.env.PORT || 3000;
 
@@ -61,6 +61,9 @@ const redisSessionStore = new RedisStore({
 });
 */
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 const oauthClient = new OauthClient();
 const realmService = new RealmService(oauthClient);
 
@@ -70,17 +73,6 @@ app.use(session({ name: 'blizzard-api-example-session',
                   saveUninitialized: true,
                   resave: true
                    })); // store: redisSessionStore
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
-});
 
 server.listen(port, () => {
   console.log('Server listening at port %d', port);
