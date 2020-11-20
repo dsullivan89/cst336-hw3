@@ -12,8 +12,8 @@ Here are your realms.
 		</tr>
 	<% for (var i = 0; i < realmData.results.length; i++) { %>
 		<tr>
-			<td> <%= realmData.results[i].realms.name.en_US %> </td>
-			<td> <%= realmData.results[i].realms.type.name.en_US %> </td>
+			<td> <%= realmData.results[i].realms["name"].en_US %> </td>
+			<td> <%= realmData.results[i].realms["type"].name.en_US %> </td>
 			<td> <%= realmData.results[i].realms.has_queue %> </td>
 			<td> <%= realmData.results[i].realms.status.name.en_US %> </td>
 			<td> <%= realmData.results[i].population.name.en_US %> </td>
