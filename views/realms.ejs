@@ -10,7 +10,7 @@ Here are your realms.
 			<td>Status</td>
 			<td>Population</td>
 		</tr>
-	<% for(var i = 0; i < realmData.results.length; i++) { %>
+	<% for (var i = 0; i < realmData.results.length; i++) { %>
 		<tr>
 			<td> <%= realmData.results[i].name %> </td>
 			<td> <%= realmData.results[i].type %> </td>
@@ -18,6 +18,6 @@ Here are your realms.
 			<td> <%= realmData.results[i].status %> </td>
 			<td> <%= realmData.results[i].population %> </td>
 		</tr>
-	<% }); %>
+	<% } %>
 	</table>
 <% } %>
