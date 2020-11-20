@@ -141,7 +141,7 @@ app.get('/realmlist', urlencodedParser, async (req, res, next) => {
   
   try {
     const data = await realmService.getRealms(
-      req.body.namespace+req.body.region, 
+      req.body[namespace + region], 
       req.body.locale, 
       req.body.status, 
       req.body.timezone, 
