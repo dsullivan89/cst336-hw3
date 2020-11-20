@@ -16,9 +16,12 @@ body {
 
 /* Footer css */
 .center {
-	display: block;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.d-block {
+	display: block;
 }
 
 .small {
