@@ -2,9 +2,13 @@
 <html lang="en">
 	<head>
 		<title> Retail WoW Realm List </title>
-		<link rel="stylesheet" href="css/styles.css" type="text/css">
+		<link rel="stylesheet" 
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+			integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" 
+			crossorigin="anonymous">
+		<link rel="stylesheet" href="/public/css/styles.css" type="text/css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <script src="js/main.js" type="text/javascript"></script>
+      <script src="/public/js/realm.js" type="text/javascript"></script>
 	</head>
 	<body>
 		<header>
@@ -25,7 +29,7 @@
 				<% for (var i = 0; i < realmData.results.length; i++) { %>
 					<% for (var j = 0; j < realmData.results[i].data.realms.length; j++) { %>
 						<tr>
-							<td> <%= j %> </td>
+							<td> <%= i %> </td>
 							<td> <%= realmData.results[i].data.realms[j].name.en_US %> </td>
 							<td> <%= realmData.results[i].data.realms[j].type.name.en_US %> </td>
 							<!-- This is a bool so we need to handle html elements like so... -->
