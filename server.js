@@ -137,7 +137,7 @@ app.get('/auth/bnet/callback',
         res.redirect('/');
     });
 
-app.get('/realmlist', urlencodedParser, async (req, res, next) => {
+app.get('/realmlist', jsonParser, async (req, res, next) => {
   
   try {
     const data = await realmService.getRealms(
