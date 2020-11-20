@@ -22,7 +22,7 @@ class OAuthClient {
             this.token = this.client.accessToken.create(token);
             return this.token;
         } else {
-            return this.token.token.access_token;
+            return this.token; // .token.access_token;
         }
     }
 }
