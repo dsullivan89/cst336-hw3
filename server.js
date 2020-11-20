@@ -137,16 +137,16 @@ app.get('/auth/bnet/callback',
         res.redirect('/');
     });
 
-app.get('/realmlist', urlencodedParser, async (req, res, next) => {
-  console.log(req.body);
+app.get('/realmlist', async (req, res, next) => {
+  console.log(req.query);
   try {
     const data = await realmService.getRealms(
-      req.body.region,
-      req.body.namespace,
-      req.body.locale, 
-      req.body.status, 
-      req.body.timezone, 
-      req.body.orderby, 
+      req.query.region,
+      req.query.namespace,
+      req.query.locale, 
+      req.query.status, 
+      req.query.timezone, 
+      req.query.orderby, 
       "1");
     /*
     const data = await realmService.getRealms(
