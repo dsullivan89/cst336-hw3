@@ -10,7 +10,7 @@ var async = require("async");
 const path = require('path');
 var cookieParser = require('cookie-parser');
 
-//const redis = require('redis')
+const redis = require('redis')
 var session = require('express-session');
 
 var passport = require('./oauth/passport');
@@ -19,14 +19,13 @@ var passport = require('./oauth/passport');
 const OauthClient = require('./oauth/OAuthClient');
 const RealmService = require('./services/RealmService');
 
-//let RedisStore = require('connect-redis')(session)
-//let redisClient = redis.createClient()
+let RedisStore = require('connect-redis')(session)
+let redisClient = redis.createClient()
 
 const createLogger = require('pino');
 
 const logger = createLogger();
 
-/*
 let redisClient;
 if (process.env.REDIS_URL) {
   redisClient = redis.createClient(process.env.REDIS_URL);
@@ -36,7 +35,6 @@ if (process.env.REDIS_URL) {
       port: process.env.REDIS_PORT
   });
 }
-*/
 
 
 
@@ -48,11 +46,9 @@ if (process.env.REDIS_URL) {
 var BNET_ID = process.env.BNET_ID;
 var BNET_SECRET = process.env.BNET_SECRET;
 
-/*
 const redisSessionStore = new RedisStore({
   client: redisClient
 });
-*/
 
 const oauthClient = new OauthClient();
 const realmService = new RealmService(oauthClient);
