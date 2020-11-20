@@ -147,7 +147,13 @@ app.get('/auth/bnet/callback',
 app.get('/realmlist', async (req, res, next) => {
   
   try {
-    const data = await realmService.getRealms("dynamic-classic-us", "en_US", "UP", "America/New York", "id", "1");
+    const data = await realmService.getRealms(
+      "dynamic-classic-us", 
+      "en_US", 
+      "UP", 
+      "America/New_York", 
+      "id", 
+      "1");
     console.log(JSON.stringify(data));
     res.render('realms', {
       realmData: data
