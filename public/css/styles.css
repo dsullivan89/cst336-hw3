@@ -24,6 +24,10 @@ body {
 	display: block;
 }
 
+.d-inblock {
+	display: inline-block;
+}
+
 .thin-border {
 	border: 2px solid #f9fd00;
 }
