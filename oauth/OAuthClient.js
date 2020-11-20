@@ -22,7 +22,6 @@ class OAuthClient {
             this.token = this.client.accessToken.create(token);
             return this.token;
         } else {
-            this.token = await this.client.getToken()
             return this.token.token.access_token;
         }
     }

@@ -4,8 +4,8 @@
   "description": "This is an example of how to use a web api. Blizzard's API has been chosen.",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js",
-    "start": "node server.js"
+    "dev": "nodemon executor.js",
+    "start": "node executor.js"
   },
   "repository": {
     "type": "git",
