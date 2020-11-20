@@ -10,13 +10,13 @@ Here are your realms.
 			<td>Status</td>
 			<td>Population</td>
 		</tr>
-	<% realmData.results.forEach(function(result) { %>
+	<% for(var i = 0; i < realmData.results.length; i++) { %>
 		<tr>
-			<td> <%= result.name %> </td>
-			<td> <%= result.type %> </td>
-			<td> <%= result.has_queue %> </td>
-			<td> <%= result.status %> </td>
-			<td> <%= result.population %> </td>
+			<td> <%= realmData.results[i].name %> </td>
+			<td> <%= realmData.results[i].type %> </td>
+			<td> <%= realmData.results[i].has_queue %> </td>
+			<td> <%= realmData.results[i].status %> </td>
+			<td> <%= realmData.results[i].population %> </td>
 		</tr>
 	<% }); %>
 	</table>
