@@ -113,25 +113,55 @@ app.get('/', function(req, res, next) {
 
 app.get('/authenticated', async (req, res, next) => {
   res.render('authenticated_index', { id: req.user.id, battletag: req.user.battletag });
-})
+});
 
-    /*
-    // res.render('index', { id: userid, battletag: userbattletag });
+app.get('/authenticated/realmsearch', async (req, res, next) => {
+  res.render('realm_search');
+});
 
-    //res.sendFile(path.join(__dirname + '/public/index.html'), 
-    //  { id: req.user.id, battletag: req.user.battletag } );
-    // res.send(data);
-    //res.writeHead(200, {'Content-Type': 'text/json'});
-    //res.write(data);
-    //res.end();
+app.get('/authenticated/realmlist', async (req, res, next) => {
+  console.log(req.query);
+  try {
+    const data = await realmService.getRealms(
+      req.query.region,
+      req.query.namespace,
+      req.query.locale, 
+      req.query.status, 
+      req.query.timezone, 
+      req.query.orderby, 
+      "1");
+    
+    console.log(JSON.stringify(data));
+    res.render('realms', {
+      realmData: data
+    });
+  } catch (e) {
+    next(e);
+    }
+    }, (err, req, res, next) => {
+    logger.error(err);
+    res.render("error-realms");
+
+});
+
+app.get('/authenticated/charactersearch', async (req, res, next) => {
+  res.render('realm_search');
+});
+
+app.get('/characterlist', async (req, res, next) => {
+  try {
+      const characters = await realmService.getUsersCharactersList(oauthClient.getToken());
+      //getUsersCharactersList(req.user.token);
+      res.render('characters', {
+          characters
+      });
+  } catch (e) {
+      next(e);
   }
-  else
-  {
-    res.render('index', { code: "", id: "N/A", battletag: "N/A" });
-  }
-  //res.sendFile(path.join(__dirname + '/public/index.html'));
-  
-}); */
+}, (err, req, res, next) => {
+  logger.error(err);
+  res.render("error-characters");
+});
 
 app.get('/login', (req, res) => {
   res.redirect('/login/oauth/battlenet');
@@ -150,54 +180,6 @@ app.get('/auth/bnet/callback',
     function(req, res){
         res.redirect('/');
     });
-
-app.get('/realmlist', async (req, res, next) => {
-  console.log(req.query);
-  try {
-    const data = await realmService.getRealms(
-      req.query.region,
-      req.query.namespace,
-      req.query.locale, 
-      req.query.status, 
-      req.query.timezone, 
-      req.query.orderby, 
-      "1");
-    /*
-    const data = await realmService.getRealms(
-      "dynamic-classic-us", 
-      "en_US", 
-      "UP", 
-      "America/New_York", 
-      "id", 
-      "1");
-    */
-    console.log(JSON.stringify(data));
-    res.render('realms', {
-      realmData: data
-    });
-  } catch (e) {
-    next(e);
-    }
-    }, (err, req, res, next) => {
-    logger.error(err);
-    res.render("error-realms");
-
-});
-
-app.get('/characterlist', async (req, res, next) => {
-  try {
-      const characters = await realmService.getUsersCharactersList(oauthClient.getToken());
-      //getUsersCharactersList(req.user.token);
-      res.render('characters', {
-          characters
-      });
-  } catch (e) {
-      next(e);
-  }
-}, (err, req, res, next) => {
-  logger.error(err);
-  res.render("error-characters");
-});
 
 module.exports = async () => {
   await oauthClient.getToken();
