@@ -14,68 +14,9 @@
 		<header>
 			<h1>Blizzard API Example</h1>
 		</header>
-		<a href="/auth/bnet">Login with Battle.net</a>
-		<div class="formContainer">
-			<h3>Search for Realms</h3>
-			<!-- Form -->
-			<form action="/realmlist" method="get">
-				Region:
-				<select id="region" name="region">
-					<option value="none"> Select One </option>
-					<option value="us"> United States </option>
-					<option value="eu"> European Union </option>
-					<option value="kr"> Korea </opton>
-					<option value="tw"> Taiwan </option>
-				</select><br>
-				<span id="regionValidation"></span><br>
-				Namespace:
-				<select id="namespace" name="namespace">
-					<option value="dynamic-classic-">Classic WoW</option>
-					<option value="dynamic-">Retail WoW</option>
-				</select><br>
-				<span id="namespaceValidation"></span><br>
-				Locale:
-				<select id="locale" name="locale">
-					<option value="en_US">English-US</option>
-					<option value="ru_RU">Russian</option>
-					<option value="en_GB">English-GB</option>
-					<option value="zh_TW">Chinese-Taiwan</option>
-					<option value="ko_KR">Korean</option>
-					<option value="es_MX">Spanish-Mexico</option>
-					<option value="pt_BR">Portuguese-Brazil</option>
-					<option value="es_ES">Spanish-Spain</option>
-					<option value="zh_CN">Chinese</option>
-					<option value="fr_FR">French</option>
-					<option value="de_DE">Dutch</option>
-				</select><br>
-				Status: 	<input type="radio" name="status" value="UP" checked> Up
-							<input type="radio" name="status" value="DOWN"> Down<br>
-				<span id="statusValidation"></span><br>
-				Timezone:
-				<select id="timezone" name="timezone">
-					<!-- Region: US -->
-					<option value="America/Los_Angeles">America/Los Angeles</option>
-					<option value="America/New_York">America/New York</option>
-					<option value="Australia/Melbourne">Australia/Melbourne</option>
-					<!-- Region: EU -->
-					<option value="Europe/Paris">Europe/Paris</option>
-					<!-- Region: KR -->
-					<option value="Asia/Seoul">Asia/Seoul</option>
-				</select><br>
-				<span id="timezoneValidation"></span><br>
-				<p>* Valid values for this are:</p>
-				<ul>
-					<li>namespace</li>
-					<li>locale</li>
-					<li>status.type</li>
-					<li>realms.timezone</li>
-				</ul>
-				Order By: <input type="text" id="orderby" name="orderby"><br>
-				<span id="orderbyValidation"></span><br>
-				<input type="submit" value="View Realms">
-			</form>
-		</div>
-			
+		<nav>
+			<a href="/auth/bnet">Login with Battle.net</a>
+		</nav>
 	</body>
 	<footer>
 		<feature>

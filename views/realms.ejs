@@ -15,11 +15,13 @@
 			<h1>Blizzard API</h1>
 			<hr>
 		</header>
-		<a href="#">Home</a>
+		<nav>
+			<a href="/authenticated">Home</a>
 			<a href="/authenticated/realmsearch">Realm Search</a>
 			<a href="/authenticated/charactersearch">Character Search</a>
 			<a href="/logout">Log out</a>
-		<div class="thin-border d-inblock">
+		</nav>
+		<div class="thin-border d-inblock"></div>
 			<h2> Realm List </h2>
 			<!-- Table Start -->
 			<% if (locals.realmData) { %>	<!-- has data-->	
