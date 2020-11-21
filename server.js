@@ -98,12 +98,25 @@ app.get('/initialData', function(req, res) {
   res.end();
 });
 
-app.get('/', function(req, res) {
+app.get('/', function(req, res, next) {
   if(req.isAuthenticated()) {
     var userid = req.user.id;
     var userbattletag = req.user.battletag;
-    
-    res.render('index', { id: userid, battletag: userbattletag });
+
+    return res.redirect('authenticated');
+  }
+  next();
+},
+(req, res, next) => {
+  res.render('index');
+});
+
+app.get('/authenticated', async (req, res, next) => {
+  res.render('authenticated_index', { id: req.user.id, battletag: req.user.battletag });
+})
+
+    /*
+    // res.render('index', { id: userid, battletag: userbattletag });
 
     //res.sendFile(path.join(__dirname + '/public/index.html'), 
     //  { id: req.user.id, battletag: req.user.battletag } );
@@ -117,7 +130,8 @@ app.get('/', function(req, res) {
     res.render('index', { code: "", id: "N/A", battletag: "N/A" });
   }
   //res.sendFile(path.join(__dirname + '/public/index.html'));
-});
+  
+}); */
 
 app.get('/login', (req, res) => {
   res.redirect('/login/oauth/battlenet');
@@ -170,7 +184,7 @@ app.get('/realmlist', async (req, res, next) => {
 
 });
 
-app.get('/characters', async (req, res, next) => {
+app.get('/characterlist', async (req, res, next) => {
   try {
       const characters = await realmService.getUsersCharactersList(oauthClient.getToken());
       //getUsersCharactersList(req.user.token);
